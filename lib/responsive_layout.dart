@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:rsv/responsive_screen.dart';
+
+import 'taplaet.dart';
+import 'desktop.dart';
+
 class ResponsiveContainer extends StatelessWidget {
   const ResponsiveContainer({super.key});
 
@@ -8,43 +13,13 @@ class ResponsiveContainer extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         double width = constraints.maxWidth;
-
-        Color color;
-        double height;
-        double containerWidth;
-
         if (width < 600) {
-          // Mobile
-          color = Colors.blue;
-          height = 150;
-          containerWidth = 150;
+          return const MobileHomePage();
         } else if (width < 1024) {
-          // Tablet
-          color = Colors.green;
-          height = 250;
-          containerWidth = 300;
+          return const TabletHomePage();
         } else {
-          // Desktop
-          color = Colors.orange;
-          height = 350;
-          containerWidth = 500;
+          return const DesktopHomePage();
         }
-
-        return Scaffold(
-          body: Center(
-            child: Container(
-              width: containerWidth,
-              height: height,
-              color: color,
-              child: const Center(
-                child: Text(
-                  "Responsive Container",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ),
-            ),
-          ),
-        );
       },
     );
   }
